@@ -1,0 +1,29 @@
+{
+  "name": "dummy_file_upload_api",
+  "version": "1.0.0",
+  "description": "A simple file upload api with cropping capabilities",
+  "main": "./src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pc-magas/image-upload-dummy-api.git"
+  },
+  "keywords": [
+    "File",
+    "Upload",
+    "Image",
+    "Cropping",
+    "Api"
+  ],
+  "author": "Dimitrios Desyllas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pc-magas/image-upload-dummy-api/issues"
+  },
+  "homepage": "https://github.com/pc-magas/image-upload-dummy-api#readme",
+  "dependencies": {
+    "expressjs": "^1.0.1"
+  }
+}
