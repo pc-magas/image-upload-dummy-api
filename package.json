@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/pc-magas/image-upload-dummy-api#readme",
   "dependencies": {
-    "expressjs": "^1.0.1"
+    "expressjs": "^1.0.1",
+    "path": "^0.12.7"
   }
 }
