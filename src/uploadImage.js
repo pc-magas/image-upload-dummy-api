@@ -1,5 +1,6 @@
 // A local http client to test the site.
 const fs = require('fs');
+const path = require('path');
 const request = require('request');
 const conf = require('./config/web');
 
@@ -24,7 +25,7 @@ const responseCallback=(error, response, body)=>{
         process.exit(1);
     }
     console.log("Returned status code: \n"+response.status);
-    console.log("Returned Body: \n"+body);
+    console.log("Returned Body: \n"+JSON.stringify(body));
 }
 
 fs.readFile(fileName,(err,data)=>{
@@ -36,14 +37,9 @@ fs.readFile(fileName,(err,data)=>{
     request({
         method:'POST',
         uri: "http://localhost:9090/image",
-        multipart:[
-            {
-                'content-type': 'application/json',
-                'body': JSON.stringify({
-                    name: fileName,
-                    content: Buffer.from(data).toString('base64')
-                }),
-            }
-        ]
+        json:{
+            name: path.basename(fileName),
+            data: Buffer.from(data).toString('base64')
+        },
     },responseCallback)
 })

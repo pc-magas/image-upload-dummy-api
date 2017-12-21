@@ -25,7 +25,11 @@
   },
   "homepage": "https://github.com/pc-magas/image-upload-dummy-api#readme",
   "dependencies": {
+    "body-parser": "^1.18.2",
     "expressjs": "^1.0.1",
     "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "request": "^2.83.0"
   }
 }
