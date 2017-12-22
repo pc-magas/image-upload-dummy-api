@@ -1,4 +1,5 @@
 const fs = require('fs');
+const fileType = require('file-type');
 const settings = require('../config/file');
 
 module.exports={
@@ -21,11 +22,18 @@ module.exports={
      * An UNSAFE way of getting the image type.
      * It is just for demonstration purpoce.
      * @param String Filename The image name to get the data
-     * @param callback The callback that returns the mime 
+     * @param Function callback The callback that returns the mime 
      */
-    // 'image_mime':function(fileName,callback){
-    //     const fileFullPath = settings.upload_dir+'/'+fileName;
-    //     if()
-    // }
+    'get_image':function(fileName,callback){
+        const fileFullPath = settings.upload_dir+'/'+fileName;
+        fs.readFile(fileFullPath,(err,data)=>{
+            if(err){
+               return callback(err);
+            }
+
+            const mimeType = fileType(data);
+            callback(null,mimeType,data);
+        });
+    }
 }
 

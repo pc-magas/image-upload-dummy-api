@@ -23,9 +23,19 @@ router.post('/',(req,res)=>{
     })
 });
 
-// router.get('/image',(req,res)=>{
-
-// });
+router.get('/:imageName',(req,res)=>{
+    const imageName=req.params.imageName;
+    imageModel.get_image(imageName,(err,mime,data)=>{
+        if(err){
+            if(err.code==="ENOENT"){
+                return res.status(404).json({message:err.message}).send(); 
+            }
+            console.error(err.code);
+            return res.status(500).json({message:err.message}).send();
+        }
+        res.set('Content-type',mime).send(data);
+    });
+});
 
 module.exports=router;
 
