@@ -9,8 +9,11 @@ module.exports={
      * @param Function callback The callback to return the result.
      */
     'save_file':function(fileData,fileName,callback) {
+        
+        fileData=fileData.replace(/^data:\w*\/.*;base64,/gm,'');
         const fileFullPath = settings.upload_dir+'/'+fileName;
         const fileDataDecoded = Buffer.from(fileData,'base64');
+
         fs.writeFile(fileFullPath,fileDataDecoded,(err)=>{
             if(err){
                 return callback(err);
