@@ -11,6 +11,14 @@ router.post('/',(req,res)=>{
       return res.status(400).json({message:"Please provide an http body to this endpoint"}).send();
     }
 
+    if(!req.body.data){
+        return res.status(400).json({message:"Please provide the file data you want to upload"}).send();
+    }
+
+    if(!req.body.name){
+        return res.status(400).json({message:"Please provide the filename you want to upload"}).send();
+    }
+
     imageModel.save_file(req.body.data,req.body.name,(err,fileFullPath,fileName)=>{
         if(err){
             return res.status(500).json({message:err.message}).send();

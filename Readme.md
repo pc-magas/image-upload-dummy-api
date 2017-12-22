@@ -61,7 +61,7 @@ The request body that needs to get provided is:
         'data': "^the file data encoded as base64^"
     }
 ```
-Keep in mind to replace the values in `^` with the appropriate content.
+Keep in mind to replace the values in `^` with the appropriate content. In case of no json body provided or into the request body provided has not both of `name` or `data` attributes thenthe api responde with http error `400`.
 
 #### Response
 The response is a json with the following format:
