@@ -5,8 +5,13 @@ const imageModel = require('../services/image_handler');
 const router = express.Router();
 router.use(bodyParser.json({limit: '100mb'}));
 
+
+/**
+ * Upload an Image
+ */
 router.post('/',(req,res)=>{
-    
+    res.set('Access-Control-Allow-Origin','*');
+
     if (!req.body){
       return res.status(400).json({message:"Please provide an http body to this endpoint"}).send();
     }
@@ -31,7 +36,13 @@ router.post('/',(req,res)=>{
     })
 });
 
+/**
+ * Get an image
+ */
 router.get('/:imageName',(req,res)=>{
+
+    res.set('Access-Control-Allow-Origin','*');
+
     const imageName=req.params.imageName;
     imageModel.get_image(imageName,(err,mime,data)=>{
         if(err){
@@ -43,6 +54,20 @@ router.get('/:imageName',(req,res)=>{
         }
         res.set('Content-type',mime).send(data);
     });
+});
+
+/**
+ * Handle Options and any other http request
+ */
+router.all('/',(req,res,next)=>{
+    if(req.method==='OPTIONS'){
+        return res.set('Access-Control-Allow-Origin','*')
+        .set('Access-Control-Allow-Methods','POST,GET')
+        .set('Access-Control-Allow-Headers','Content-type,Access-Control-Allow-Origin')
+        .send();
+    } else {
+        next();
+    }
 });
 
 module.exports=router;
