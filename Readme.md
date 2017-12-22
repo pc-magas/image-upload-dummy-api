@@ -81,4 +81,6 @@ Keep in mind that values in `^` are replaced with the approrpiate ones from the 
 The endpoint supports only the `GET` method.
 
 ### Request
-Over the url just put
+Over the url just replace the `:imageName` image in order to get the image data of the filename. 
+
+If the file does not exist then it returns an http reposne with `404` status code and the body in **json** exactly the same as the ones that the api repsponses and response header `Content-type:application/json`.  If the image exists the image data will be into the response body with the `Content-type` header having the appropriate mime type. In any other case it will return a response similar with the one that is when the image does not exist with the difference that will have error `500`.
